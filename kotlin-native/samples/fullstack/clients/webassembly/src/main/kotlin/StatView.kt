@@ -98,7 +98,7 @@ class View(canvas: Canvas): Layout(canvas.getBoundingClientRect()) {
         stroke()
     }
 
-    fun showValue(index: Int, value: Int, y: Int, color: String) = with(context) {
+    fun showValue(index: Int, value: Int) = with(context) {
 
         val textCellHeight = teamHeight / Model.tupleSize
         val textBaseline = index * textCellHeight + textCellHeight / 2
@@ -181,11 +181,8 @@ class View(canvas: Canvas): Layout(canvas.getBoundingClientRect()) {
             }
         }
         for (i in 0 until Model.tupleSize) {
-            val style = Model.styles[i]
             val value = Model.colors((Model.current + Model.backLogSize - 1) % Model.backLogSize, i)
-
-            val y = scaleY(i.toFloat() / (Model.tupleSize).toFloat())
-            showValue(i, value, y, style)
+            showValue(i, value)
         }
 
         showLegend()
